@@ -1,51 +1,223 @@
- /* Contenedor principal */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 250px repeat(3, 1fr);
-  gap: 25px;
-  background-color: #0d1323;
-  padding: 50px;
+/* ─── VARIABLES ─────────────────────────────────────────── */
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b2e;
+  --purple: #5e4bdb;
+  --coral: #e07a5f;
+  --cyan: #48cae4;
+  --pink: #f45b8e;
+  --green: #2dc972;
+  --violet: #9b5de5;
+  --yellow: #f4c430;
+  --text: #ffffff;
+  --text-muted: #7a8ab0;
+  --radius: 20px;
+  --gap: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
-/* Estilos de la tarjeta de contenido */
-.card-background {
-  border-radius: 15px;
-  padding-top: 40px;
-  position: relative;
+/* ─── DASHBOARD ──────────────────────────────────────────── */
+.dashboard {
+  display: grid;
+  grid-template-columns: 190px repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--gap);
+  max-width: 860px;
+  width: 500%;
 }
 
-.card-content {
-  background-color: #1c1f4a;
-  border-radius: 15px;
-  padding: 25px;
+/* ─── PROFILE CARD ───────────────────────────────────────── */
+.profile-card {
+  grid-row: 1 / 3;
+  background: var(--purple);
+  border-radius: var(--radius);
+  padding: 30px 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 36px;
+  background: linear-gradient(135deg, #f9a825, #e91e63);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  overflow: hidden;
+}
+
+.profile-avatar img {
+  width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
-.card-content:hover {
-  background-color: #34397b;
+.profile-label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 6px;
+}
+
+.profile-name {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: auto;
+}
+
+.timeframe-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.timeframe-list li {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
+  transition: color 0.2s;
 }
 
-/* Colores dinámicos */
-.orange { background-color: #ff8c66; }
-.cyan { background-color: #56c2e6; }
-.pink { background-color: #ff5c7c; }
-
-/* Tipografía */
-.hours {
-  color: white;
-  font-size: 3rem;
-  font-weight: 300;
-  margin: 10px 0;
+.timeframe-list li:hover {
+  color: #fff;
 }
 
-.previous {
-  color: #bdc1ff;
-  font-size: 0.9rem;
+.timeframe-list li.active {
+  color: #fff;
+  font-weight: 600;
 }
 
-.title {
-  color: white;
+/* ─── ACTIVITY CARD ──────────────────────────────────────── */
+.activity-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-top {
+  height: 70px;
+  position: relative;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card-top-icon {
+  position: absolute;
+  right: 14px;
+  top: 8px;
+  font-size: 54px;
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.card-top.work     { background: var(--coral); }
+.card-top.play     { background: var(--cyan); }
+.card-top.study    { background: var(--pink); }
+.card-top.exercise { background: var(--green); }
+.card-top.social   { background: var(--violet); }
+.card-top.selfcare { background: var(--yellow); }
+
+.card-body {
+  padding: 22px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 15px;
   font-weight: 500;
+}
+
+.card-menu-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.card-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.card-hours {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.card-prev {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .profile-card {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+  .profile-avatar { margin-bottom: 0; }
+  .profile-name { font-size: 22px; margin-bottom: 0; }
+  .timeframe-list { flex-direction: row; margin-top: 0; }
+}
+
+@media (max-width: 420px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .profile-card { grid-column: auto; }
 }
