@@ -1,0 +1,51 @@
+/* Contenedor principal */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 250px repeat(3, 1fr);
+  gap: 25px;
+  background-color: #0d1323;
+  padding: 50px;
+  min-height: 100vh;
+}
+
+/* Estilos de la tarjeta de contenido */
+.card-background {
+  border-radius: 15px;
+  padding-top: 40px;
+  position: relative;
+}
+
+.card-content {
+  background-color: #1c1f4a;
+  border-radius: 15px;
+  padding: 25px;
+  height: 100%;
+}
+
+.card-content:hover {
+  background-color: #34397b;
+  cursor: pointer;
+}
+
+/* Colores dinámicos */
+.orange { background-color: #ff8c66; }
+.cyan { background-color: #56c2e6; }
+.pink { background-color: #ff5c7c; }
+
+/* Tipografía */
+.hours {
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
+.previous {
+  color: #bdc1ff;
+  font-size: 0.9rem;
+}
+
+.title {
+  color: white;
+  font-weight: 500;
+}
