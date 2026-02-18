@@ -50,6 +50,7 @@ body {
   padding: 30px 22px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .profile-avatar {
