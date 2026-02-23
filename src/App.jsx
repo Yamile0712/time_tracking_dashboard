@@ -1,20 +1,16 @@
-import { useState } from "react";
+import { User } from "./components/User";
 import "./App.css";
 
 const activities = [
-  { id: "work",     label: "Work",      hours: 32, lastWeek: 36, icon: "👜" },
-  { id: "play",     label: "Play",      hours: 10, lastWeek: 8,  icon: "🎮" },
-  { id: "study",    label: "Study",     hours: 4,  lastWeek: 7,  icon: "📚" },
-  { id: "exercise", label: "Exercise",  hours: 4,  lastWeek: 5,  icon: "🏃" },
-  { id: "social",   label: "Social",    hours: 5,  lastWeek: 10, icon: "👥" },
-  { id: "selfcare", label: "Self Care", hours: 2,  lastWeek: 2,  icon: "🧘" },
+  { id: "work",     label: "Work",      hours: 32, lastWeek: 36, color: "work",     icon: "👜" },
+  { id: "play",     label: "Play",      hours: 10, lastWeek: 8,  color: "play",     icon: "🎮" },
+  { id: "study",    label: "Study",     hours: 4,  lastWeek: 7,  color: "study",    icon: "📚" },
+  { id: "exercise", label: "Exercise",  hours: 4,  lastWeek: 5,  color: "exercise", icon: "🏃" },
+  { id: "social",   label: "Social",    hours: 5,  lastWeek: 10, color: "social",   icon: "👥" },
+  { id: "selfcare", label: "Self Care", hours: 2,  lastWeek: 2,  color: "selfcare", icon: "🧘" },
 ];
 
-const timeframes = ["Daily", "Weekly", "Monthly"];
-
 export default function App() {
-  const [activeTimeframe, setActiveTimeframe] = useState("Weekly");
-
   return (
     <div className="dashboard">
       {/* ── Perfil ── */}
@@ -23,35 +19,23 @@ export default function App() {
         <p className="profile-label">Report for</p>
         <h1 className="profile-name">Jeremy<br />Robson</h1>
         <ul className="timeframe-list">
-          {timeframes.map((tf) => (
-            <li
-              key={tf}
-              className={activeTimeframe === tf ? "active" : ""}
-              onClick={() => setActiveTimeframe(tf)}
-            >
-              {tf}
-            </li>
-          ))}
+          <li className="active">Daily</li>
+          <li>Weekly</li>
+          <li>Monthly</li>
         </ul>
       </div>
 
       {/* ── Tarjetas de actividad ── */}
-      {activities.map(({ id, label, hours, lastWeek, icon }) => (
-        <div key={id} className="activity-card">
-          <div className={`card-top ${id}`}>
-            <span className="card-top-icon">{icon}</span>
-          </div>
-
-          <div className="card-body">
-            <div className="card-header">
-              <span className="card-title">{label}</span>
-              <button className="card-menu-btn">···</button>
-            </div>
-          
-            <div className="card-hours">{hours}hrs</div>
-            <div className="card-prev">Last Week – {lastWeek}hrs</div>
-          </div>
-        </div>
+      {activities.map(({ id, label, hours, lastWeek, color, icon }) => (
+        <User
+          key={id}
+          id={id}
+          nombre={label}
+          horas={`${hours}hrs`}
+          anterior={`${lastWeek}hrs`}
+          color={color}
+          icon={icon}
+        />
       ))}
     </div>
   );

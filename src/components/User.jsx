@@ -1,20 +1,19 @@
-export const User = ({ nombre, horas, anterior, color }) => {
-  
+export const User = ({ id, nombre, horas, anterior, color, icon }) => {
   return (
-
-    <div className={`card-container ${color}`}>
-      <div className="card-content">
-        <div className="card-header">
-          <span>{nombre}</span>
-          <button className="dots-btn">...</button>
-        </div>
-
-        <div className="card-body">
-          <h2 className="current-hours">{horas}</h2>
-          <p className="previous-stats">Last Week - {anterior}</p>
-        </div>
+    <div className={`activity-card ${color}`}>
+      <div className={`card-top ${id}`}>
+        <span className="card-top-icon">{icon}</span>
       </div>
-    </div >
 
+      <div className="card-body">
+        <div className="card-header">
+          <span className="card-title">{nombre}</span>
+          <button className="card-menu-btn">···</button>
+        </div>
+        
+        <div className="card-hours">{horas}</div>
+        <div className="card-prev">Last Week – {anterior}</div>
+      </div>
+    </div>
   );
 };
